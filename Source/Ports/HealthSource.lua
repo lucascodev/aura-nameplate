@@ -1,0 +1,24 @@
+---@meta
+
+--- The target's health, already written out as text.
+---
+--- The formatting happens on the far side of the fence on purpose. The client
+--- classifies health, and a classified number cannot be divided, compared or
+--- measured — but it can be handed to the game's own formatters and to
+--- FontString:SetText. So what crosses into Core is a string nobody here is
+--- able to read, and that is enough to draw it.
+---
+--- It travels inside an envelope, and that is the whole point of this type
+--- existing. "Is there anything to draw?" has to be answerable, and asking it
+--- of the string itself — `text ~= nil` — is a comparison against a classified
+--- value, which raises a Lua error on the spot. Comparing the envelope is free:
+--- the table is ordinary, and only what it carries is classified.
+--- Two parts, because the bar has two ends. The percentage reads well hard
+--- against the left edge and the absolute number against the right, which is
+--- one line of text in neither case.
+---@class HealthReading
+---@field primary string The value to draw. Never read, compared or measured.
+---@field secondary? string The second value, when the player asked for both.
+
+---@class HealthSource
+---@field Text fun(unit: string, format: string): HealthReading?

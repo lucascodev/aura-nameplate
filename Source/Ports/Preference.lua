@@ -1,0 +1,20 @@
+---@meta
+
+--- One option offered by a preference that has a fixed set of answers.
+---@class PreferenceChoice
+---@field id string
+---@field label string
+
+--- A single user preference: how it is stored, what it is called and how it
+--- behaves. The catalog holds them; adapters turn them into controls.
+---@class Preference
+---@field key string Storage key, unique inside the addon.
+---@field kind "boolean"|"number"|"string"|"color"
+---@field default boolean|number|string
+---@field label string
+---@field tooltip? string Shown as the support text under the label.
+---@field panel? string Page that draws it; absent means the root page.
+---@field choices? PreferenceChoice[] Present means a dropdown instead of a switch.
+---@field minimum? number Only meaningful when kind is "number".
+---@field maximum? number Only meaningful when kind is "number".
+---@field step? number Only meaningful when kind is "number".

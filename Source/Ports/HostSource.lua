@@ -1,0 +1,18 @@
+---@meta
+
+--- Whatever the icon is hanging from right now: the nameplate of the unit
+--- being followed, a free-floating frame, or nothing at all.
+---
+--- One port instead of the display asking about nameplates, targets and the
+--- floating fallback in turn.
+---
+--- Nameplate() is the narrower question. The health text has nothing to say
+--- without a unit to read it from, so it asks for a real plate and takes no
+--- answer for an answer.
+---
+--- Nameplates() is the broad one: every plate on screen, for what belongs on all
+--- of them rather than only on what the player happens to have clicked.
+---@class HostSource
+---@field Current fun(self: HostSource): NameplateHost?
+---@field Nameplate fun(self: HostSource): NameplateHost?
+---@field Nameplates fun(self: HostSource): NameplateHost[]

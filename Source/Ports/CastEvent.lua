@@ -1,0 +1,22 @@
+---@meta
+
+--- A spell that was cast and may be drawn.
+---
+--- The icon travels as a plain texture id, already resolved: the client can
+--- classify a spell so that reading anything off it errors, and the adapter
+--- that read it is the only layer allowed to find that out. Whatever reaches
+--- Core is already safe to compare, store and draw.
+---
+--- The spell id rides along for one reason only — it is what the tooltip is
+--- asked for. It is present exactly when the icon is, because the same guard
+--- cleared both: an adapter that could not read the spell never raises a cast.
+---@class CastEvent
+---@field slot string Who cast it: "player", or the nameplate unit token.
+---@field iconID number Texture id, already resolved by the adapter.
+---@field spellID number Cleared by the same guard that cleared the icon.
+---@field castAt number Client time the cast landed, in seconds.
+
+--- Where a cast comes from. Both sources answer the same shape, so the tracker
+--- never learns that one of them can go quiet.
+---@class CastSource
+---@field Start fun(self: CastSource, onCast: fun(cast: CastEvent))
