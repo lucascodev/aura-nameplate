@@ -20,6 +20,7 @@ local TEST_ARGUMENTS = { test = true, [L.COMMAND_TEST_ARGUMENT] = true }
 local RESET_ARGUMENTS = { reset = true, [L.COMMAND_RESET_ARGUMENT] = true }
 local DIAG_ARGUMENTS = { diag = true, [L.COMMAND_DIAG_ARGUMENT] = true }
 local WELCOME_ARGUMENTS = { welcome = true, [L.COMMAND_WELCOME_ARGUMENT] = true }
+local MOVE_ARGUMENTS = { move = true, [L.COMMAND_MOVE_ARGUMENT] = true }
 
 local SLASH_COMMANDS = {
 	{ command = "/anp", description = L.COMMAND_OPTIONS },
@@ -29,6 +30,7 @@ local SLASH_COMMANDS = {
 	{ command = "/anp " .. L.COMMAND_RESET_ARGUMENT, description = L.COMMAND_RESET },
 	{ command = "/anp " .. L.COMMAND_DIAG_ARGUMENT, description = L.COMMAND_DIAG },
 	{ command = "/anp " .. L.COMMAND_WELCOME_ARGUMENT, description = L.COMMAND_WELCOME },
+	{ command = "/anp " .. L.COMMAND_MOVE_ARGUMENT, description = L.COMMAND_MOVE },
 }
 
 ---@type Startup
