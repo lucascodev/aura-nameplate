@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="AURANAMEPLATE_TOGGLE" category="BINDING_HEADER_AURANAMEPLATE">
+		AuraNameplate_Toggle()
+	</Binding>
+	<Binding name="AURANAMEPLATE_OPTIONS" category="BINDING_HEADER_AURANAMEPLATE">
+		AuraNameplate_OpenOptions()
+	</Binding>
+</Bindings>
