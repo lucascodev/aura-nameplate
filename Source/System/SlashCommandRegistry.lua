@@ -18,6 +18,7 @@ end
 function SlashCommandRegistry:Register(command, handler)
 	local key = self.namespace .. "_" .. command:upper()
 
+	-- luacheck: ignore 122 (o cliente le os comandos de globais SLASH_*)
 	_G["SLASH_" .. key .. "1"] = "/" .. command
 	SlashCmdList[key] = handler
 end
