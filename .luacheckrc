@@ -68,6 +68,7 @@ read_globals = {
 	"UnitFactionGroup",
 	"UnitHealth",
 	"UnitHealthMax",
+	"UnitHealthPercent",
 	"UnitInParty",
 	"UnitIsFriend",
 	"UnitIsPlayer",
