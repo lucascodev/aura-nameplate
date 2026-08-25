@@ -92,6 +92,40 @@ script valida o `.toc` **nos dois sentidos**:
 `Ports/`, `Tests/` e `docs/` ficam de fora do pacote: o primeiro contém apenas
 anotações de tipo, os outros dois não são carregados pelo jogo.
 
+## Fluxo de trabalho
+
+O repositório segue Git Flow com duas branches permanentes:
+
+- **`main`** — só recebe release. Cada merge nela ganha uma tag `vX.Y.Z`.
+- **`develop`** — a integração do dia a dia, e a branch padrão do repositório.
+
+As duas são protegidas: nada de commit direto nem force push, e o CI
+(lint + testes) precisa estar verde para qualquer merge.
+
+O caminho de uma mudança:
+
+```sh
+git switch develop && git pull
+git switch -c feat/minha-mudanca      # ou fix/, docs/, refactor/…
+# commits no padrão descrito em Convenções
+gh pr create --base develop
+```
+
+Feature entra em develop por **squash** — um commit por mudança na história.
+
+O caminho de um release:
+
+```sh
+git switch -c release/X.Y.Z develop
+# CHANGELOG.md ganha a seção da versão; o ## Version: do .toc acompanha
+gh pr create --base main              # merge commit, não squash
+git tag vX.Y.Z && git push --tags     # dispara o release.yml
+gh pr create --base develop --head main   # a main volta para a develop
+```
+
+Correção urgente sai de `hotfix/*` a partir da main e volta para a develop
+pelo mesmo caminho.
+
 ## Publicar
 
 ```sh
@@ -131,7 +165,7 @@ função com nome descritivo. Código em inglês; textos visíveis ao jogador em
 linha normalizados em LF pelo [`.gitattributes`](../.gitattributes).
 
 **Textos** não ficam literais no código. Uma chave nova entra em
-`Locales/enUS.lua` **e** nas três traduções. Há um teste que falha se uma delas
+`Locales/enUS.lua` **e** nas cinco traduções. Há um teste que falha se uma delas
 faltar, ou se a contagem de `%s` divergir.
 
 **Valores do jogo** passam por [`Game/Secrets.lua`](../Source/Game/Secrets.lua)
