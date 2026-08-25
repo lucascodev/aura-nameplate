@@ -1,0 +1,132 @@
+## Interface: 120100, 120007
+## Title: Aura Nameplate: GCD Tracker
+## X-Brand: Aura Nameplate
+## Notes: Shows the spell you just cast, with its global cooldown, on the nameplate of the unit you are fighting.
+## Notes-ptBR: Mostra a magia que você acabou de lançar, com o tempo de recarga global, no nameplate da unidade em que está batendo.
+## Notes-esES: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
+## Notes-esMX: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
+## Notes-frFR: Affiche le sort que vous venez de lancer, avec son temps de recharge global, sur la barre de nom de l'unité que vous combattez.
+## Version: 0.1.0
+## Author: Lucascodev
+## X-License: MIT
+## X-Copyright: Copyright (c) 2026 Lucascodev
+## IconTexture: Interface\Icons\Spell_Nature_TimeStop
+## SavedVariables: AuraNameplateDB
+## Group: AuraNameplate
+## Category-enUS: Combat
+## Category-ptBR: Combate
+
+# Ports/ is intentionally absent: it holds type contracts only, consumed by the
+# language server at edit time and stripped from the runtime bundle.
+
+#@no-lib-strip@
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua
+#@end-no-lib-strip@
+
+# Text, before anything reads it at file scope. enUS is the floor; the player's
+# locale is written over it.
+Locales\Locale.lua
+Locales\enUS.lua
+Locales\ptBR.lua
+Locales\esES.lua
+Locales\frFR.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
+
+# Rules, in plain Lua. Nothing here knows the game exists.
+Source\Core\HexColor.lua
+Source\Core\Profiles.lua
+
+# Keys and choice lists before the catalog, which reads them at file scope.
+Source\Core\Preferences\Keys.lua
+Source\Core\Preferences\FontFlags.lua
+Source\Core\Preferences\AnchorPoints.lua
+Source\Core\Preferences\VisibilityModes.lua
+Source\Core\Preferences\HealthFormats.lua
+Source\Core\Preferences\AuraFilters.lua
+Source\Core\Preferences\PlateVisibility.lua
+Source\Core\Preferences\Catalog.lua
+Source\Core\Preferences\Store.lua
+Source\Core\Preferences\Lookup.lua
+Source\Core\FirstRun.lua
+Source\Core\SampleReading.lua
+Source\Core\LayoutBaseline.lua
+
+Source\Core\Tracker\CastHistory.lua
+Source\Core\Tracker\Layout.lua
+Source\Core\Tracker\Visibility.lua
+Source\Core\Tracker\Display.lua
+Source\Core\Tracker\HealthDisplay.lua
+
+Source\Core\Commands\Status.lua
+Source\Core\Commands\Help.lua
+Source\Core\Commands\Diagnose.lua
+Source\Core\Commands\Startup.lua
+
+# Reads the game and draws nothing. Secrets first: every other reader asks it
+# before touching a value the client may have classified.
+Source\Game\Secrets.lua
+Source\Game\AddonMetadata.lua
+Source\Game\ClientFont.lua
+Source\Game\SpellIcon.lua
+Source\Game\GlobalCooldown.lua
+Source\Game\HealthAbbreviation.lua
+Source\Game\UnitHealth.lua
+Source\Game\PlayerCasts.lua
+Source\Game\UnitCasts.lua
+Source\Game\PlateCVars.lua
+Source\Game\NameplateRegistry.lua
+Source\Game\NameplateTracker.lua
+Source\Game\PlateKind.lua
+Source\Game\CombatPlates.lua
+Source\Game\Probe.lua
+
+# Chat, commands, shared media and the event funnel.
+Source\System\ChatLogger.lua
+Source\System\SlashCommandRegistry.lua
+Source\System\KeyBindings.lua
+Source\System\MediaLibrary.lua
+Source\System\CastEvents.lua
+Source\System\HealthEvents.lua
+
+# Frames. Shared pieces first, then the icon and where it hangs.
+Source\UI\FontStyler.lua
+Source\UI\ColorPicker.lua
+Source\UI\ConfirmPrompt.lua
+Source\UI\MinimapButton.lua
+Source\UI\NamePrompt.lua
+Source\UI\SpellIconFrame.lua
+Source\UI\HealthTextFrame.lua
+Source\UI\HealthTextPool.lua
+Source\UI\FloatingAnchor.lua
+Source\UI\NameplateAnchor.lua
+Source\UI\NameLayout.lua
+Source\UI\PortraitLayout.lua
+Source\UI\UnitWindows.lua
+Source\UI\PlayerFrameVeil.lua
+Source\UI\AuraIcon.lua
+Source\UI\OwnAuras.lua
+Source\UI\TestMode.lua
+
+# Options pages.
+Source\Options\Components\Theme.lua
+Source\Options\Components\Fonts.lua
+Source\Options\Components\Schematic.lua
+Source\Options\Components\Controls.lua
+Source\Options\Components\NameplatePreview.lua
+Source\Options\Components\Page.lua
+Source\Options\WelcomeWindow.lua
+Source\Options\MainPanel.lua
+Source\Options\AppearancePanel.lua
+Source\Options\PlatesPanel.lua
+Source\Options\WindowsPanel.lua
+Source\Options\HealthPanel.lua
+Source\Options\BehaviourPanel.lua
+Source\Options\ProfilePanel.lua
+Source\Options\OptionsPanel.lua
+
+Source\Bootstrap.lua
