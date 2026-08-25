@@ -203,11 +203,11 @@ local function ReadNameplate(lines)
 	-- falhas correspondentes sao opostas: uma e' nao ter movido, a outra e' ter
 	-- movido para onde nao se ve. Sem o estado, as duas parecem iguais na tela.
 	if host and host.auras then
-		local ok, shown = pcall(host.auras.IsShown, host.auras)
+		local probed, shown = pcall(host.auras.IsShown, host.auras)
 		local _, children = pcall(host.auras.GetNumChildren, host.auras)
 
 		Add(lines, L.DIAG_AURAS_STATE, ("%s, %s %s"):format(
-			ok and (shown and L.DIAG_YES or L.DIAG_HIDDEN) or L.DIAG_ERROR,
+			probed and (shown and L.DIAG_YES or L.DIAG_HIDDEN) or L.DIAG_ERROR,
 			tostring(type(children) == "number" and children or 0),
 			L.DIAG_AURA_CHILDREN
 		))
