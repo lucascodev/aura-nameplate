@@ -6,7 +6,7 @@
 ## Notes-esES: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
 ## Notes-esMX: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
 ## Notes-frFR: Affiche le sort que vous venez de lancer, avec son temps de recharge global, sur la barre de nom de l'unité que vous combattez.
-## Version: 0.2.0
+## Version: 0.3.0
 ## Author: Lucascodev
 ## X-License: MIT
 ## X-Curse-Project-ID: 1668538
