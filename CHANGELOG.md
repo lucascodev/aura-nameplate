@@ -5,6 +5,11 @@ projeto usa [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Alterado
+
+- As auras ganharam página própria nas opções, **Auras**, logo abaixo de Vida —
+  antes moravam no fim da página de Vida.
+
 ### Corrigido
 
 - O tamanho do ícone das auras passa a valer na hora, em combate inclusive.

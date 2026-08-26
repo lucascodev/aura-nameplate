@@ -27,6 +27,12 @@ local PANELS = {
 		end,
 	},
 	{
+		name = "auras",
+		register = function(category, catalog, preferences)
+			return Addon.AurasPanel.Register(category, catalog, preferences)
+		end,
+	},
+	{
 		name = "plates",
 		register = function(category, catalog, preferences)
 			return Addon.PlatesPanel.Register(category, catalog, preferences)

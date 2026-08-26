@@ -1,6 +1,7 @@
 return function(Addon, T)
 	local PAGE_FILES = {
 		appearance = "Source/Options/AppearancePanel.lua",
+		auras = "Source/Options/AurasPanel.lua",
 		behaviour = "Source/Options/BehaviourPanel.lua",
 		health = "Source/Options/HealthPanel.lua",
 		plates = "Source/Options/PlatesPanel.lua",

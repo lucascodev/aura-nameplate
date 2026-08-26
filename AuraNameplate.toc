@@ -127,6 +127,7 @@ Source\Options\AppearancePanel.lua
 Source\Options\PlatesPanel.lua
 Source\Options\WindowsPanel.lua
 Source\Options\HealthPanel.lua
+Source\Options\AurasPanel.lua
 Source\Options\BehaviourPanel.lua
 Source\Options\ProfilePanel.lua
 Source\Options\OptionsPanel.lua
