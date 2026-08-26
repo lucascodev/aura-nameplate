@@ -131,7 +131,32 @@ return function(Addon, T)
 			T.Equals(written.nameplateShowFriendlyNpcs, false)
 			T.Equals(written.nameplateShowEnemies, nil)
 			T.Equals(written.nameplateShowSelf, nil)
-			T.Equals(written.nameplateMotion, nil)
+			T.Equals(written.nameplateStackingTypes, nil)
+		end)
+
+		--- O cliente atual trocou o booleano por uma mascara de tipos: ligar
+		--- precisa dos bits de inimigo e de aliado, nao de "1".
+		T.Test("placas empilhadas ligam com a mascara dos dois tipos", function()
+			local values
+
+			PlateVisibility.Apply(Preferences({ [Keys.PLATES_STACKED] = true }), function(cvars, _, written)
+				if cvars[1] == "nameplateStackingTypes" then
+					values = written
+				end
+			end)
+
+			T.Equals(values.nameplateStackingTypes, "3")
+		end)
+
+		--- Um cliente antigo ainda responde por `nameplateMotion`; o novo, so'
+		--- pelo nome novo, que por isso vem primeiro.
+		T.Test("placas empilhadas oferecem o nome novo antes do antigo", function()
+			for _, binding in ipairs(PlateVisibility.Bindings) do
+				if binding.key == Keys.PLATES_STACKED then
+					T.Equals(binding.cvars[1], "nameplateStackingTypes")
+					T.Equals(binding.cvars[2], "nameplateMotion")
+				end
+			end
 		end)
 
 		T.Test("reconhece as chaves que manda, e so elas", function()

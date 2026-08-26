@@ -3,6 +3,15 @@
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o
 projeto usa [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Corrigido
+
+- "Placas empilhadas" voltou a valer no cliente atual. A chave `nameplateMotion`
+  deixou de existir e virou `nameplateStackingTypes`, uma máscara por tipo
+  (inimigos e aliados); ligar aqui empilha os dois, e o cliente antigo segue
+  atendido pelo nome que ele conhece.
+
 ## [0.3.0] - 2026-08-26
 
 ### Alterado
