@@ -20,7 +20,10 @@ local PlateVisibility = {}
 --- e o interruptor virou enfeite em silêncio — a leitura devolvia nil e nada
 --- explicava por quê. Com a lista, um nome que muda custa uma entrada, e o
 --- cliente antigo continua atendido pelo nome que ele conhece.
----@type { key: string, cvars: string[] }[]
+---
+--- Ligar nem sempre e' "1". Uma chave de mascara liga com os bits que a ligacao
+--- escolhe em `values`, por nome; quem nao tem entrada ali e' booleano.
+---@type { key: string, cvars: string[], values: table<string, string>? }[]
 PlateVisibility.Bindings = {
 	{
 		key = Keys.PLATES_FRIENDLY_PLAYERS,
@@ -51,8 +54,14 @@ PlateVisibility.Bindings = {
 	{ key = Keys.PLATES_ENEMY_GUARDIANS, cvars = { "nameplateShowEnemyGuardians" } },
 	{ key = Keys.PLATES_ALWAYS, cvars = { "nameplateShowAll" } },
 	{ key = Keys.PLATES_SELF, cvars = { "nameplateShowSelf" } },
-	-- Nao e' um "Show", mas e' o mesmo contrato: um booleano do cliente.
-	{ key = Keys.PLATES_STACKED, cvars = { "nameplateMotion" } },
+	-- Nao e' um "Show", e no cliente atual nem booleano: `nameplateStackingTypes`
+	-- e' uma mascara de tipos (inimigos, aliados), e empilhar aqui e' os dois.
+	-- Ler continua igual — zero e' desligado —, so' o valor ligado muda.
+	{
+		key = Keys.PLATES_STACKED,
+		cvars = { "nameplateStackingTypes", "nameplateMotion" },
+		values = { nameplateStackingTypes = "3" },
+	},
 }
 
 --- As chaves que desenham aliado, e so' elas: sao as que saem da frente quando
@@ -67,11 +76,11 @@ local FRIENDLY_KEYS = {
 
 --- Apaga as placas aliadas no cliente sem tocar nas preferencias: o que o
 --- jogador escolheu continua salvo, e volta inteiro com Apply.
----@param write fun(cvars: string[], isOn: boolean)
+---@param write fun(cvars: string[], isOn: boolean, values: table<string, string>?)
 function PlateVisibility.HideFriendly(write)
 	for _, binding in ipairs(PlateVisibility.Bindings) do
 		if FRIENDLY_KEYS[binding.key] then
-			write(binding.cvars, false)
+			write(binding.cvars, false, binding.values)
 		end
 	end
 end
@@ -111,10 +120,10 @@ end
 
 --- Escreve todas de uma vez. Repetir é barato: quem escreve compara antes.
 ---@param preferences Preferences
----@param write fun(cvars: string[], isOn: boolean)
+---@param write fun(cvars: string[], isOn: boolean, values: table<string, string>?)
 function PlateVisibility.Apply(preferences, write)
 	for _, binding in ipairs(PlateVisibility.Bindings) do
-		write(binding.cvars, preferences:Get(binding.key) == true)
+		write(binding.cvars, preferences:Get(binding.key) == true, binding.values)
 	end
 end
 

@@ -8,7 +8,7 @@ local _, Addon = ...
 ---@class PlateCVars
 local PlateCVars = {}
 
----@type table<string, boolean>
+---@type table<string, { isOn: boolean, value: string }>
 local pending = {}
 ---@type table?
 local waiter
@@ -21,8 +21,9 @@ local failure
 
 ---@param cvar string
 ---@param isOn boolean
+---@param value string O que escrever para ligar; desligar e' sempre "0".
 ---@return boolean hasLanded
-local function Put(cvar, isOn)
+local function Put(cvar, isOn, value)
 	-- Comparar antes de escrever: o cliente reage a toda escrita, e reescrever o
 	-- que já está lá remontaria as placas da tela sem motivo.
 	local ok, current = pcall(C_CVar.GetCVarBool, cvar)
@@ -33,7 +34,7 @@ local function Put(cvar, isOn)
 
 	-- Recusa tem duas caras: o erro, e o false educado. As duas ficam
 	-- registradas — recusa engolida é interruptor parecendo quebrado.
-	local wrote, accepted = pcall(C_CVar.SetCVar, cvar, isOn and "1" or "0")
+	local wrote, accepted = pcall(C_CVar.SetCVar, cvar, isOn and value or "0")
 
 	if not wrote then
 		failure = ("%s: %s"):format(cvar, tostring(accepted))
@@ -55,8 +56,8 @@ function PlateCVars.LastFailure()
 end
 
 local function Flush()
-	for cvar, isOn in pairs(pending) do
-		Put(cvar, isOn)
+	for cvar, entry in pairs(pending) do
+		Put(cvar, entry.isOn, entry.value)
 		pending[cvar] = nil
 	end
 end
@@ -131,17 +132,25 @@ end
 --- Escreve tentando primeiro: a maioria das chaves de placa aceita mudanca em
 --- pleno combate, e adivinhar que vai falhar adiaria o que podia acontecer
 --- agora. So' o que o cliente recusou de fato espera o fim da luta.
+---
+--- Ligar nem sempre e' "1": uma chave de mascara liga com os bits que a
+--- ligacao escolheu para aquele nome. Comparar antes de escrever continua por
+--- booleano — uma mascara que ja' tem algum bit ligado e' "ligada", e o que o
+--- jogador escolheu la' fica como esta'.
 ---@param cvars string[]
 ---@param isOn boolean
-function PlateCVars.Write(cvars, isOn)
+---@param values table<string, string>? Por nome, o que escrever para ligar.
+function PlateCVars.Write(cvars, isOn, values)
 	local cvar = PlateCVars.NameOf(cvars)
 
 	if not cvar then
 		return
 	end
 
-	if not Put(cvar, isOn) and InCombatLockdown() then
-		pending[cvar] = isOn
+	local value = values and values[cvar] or "1"
+
+	if not Put(cvar, isOn, value) and InCombatLockdown() then
+		pending[cvar] = { isOn = isOn, value = value }
 		WaitForPeace()
 	end
 end
