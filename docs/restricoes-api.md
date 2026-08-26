@@ -312,6 +312,10 @@ vez de herdar a escala da interface.
   coisa em um frame proibido dá erro.
 - **Não escrever em frame seguro durante combate.** `SetPoint` e `SetAttribute`
   em frame protegido com `InCombatLockdown()` geram taint.
+- **Botão de aura que mostra aura secreta é proibido** (12.1): `IsForbidden()`
+  responde true e qualquer outra chamada — `SetSize` inclusive — estoura. Vale
+  em combate, masmorra e PvP. Um botão recém-criado ainda não é, por isso
+  `OwnAuras` recria a fileira quando precisa mudar o tamanho em combate.
 - Alterações puramente visuais — `SetVertexColor`, `SetAlpha`, `SetScale`,
   `SetFont`, troca de textura — são sempre seguras.
 

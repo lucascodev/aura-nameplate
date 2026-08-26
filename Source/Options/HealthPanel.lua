@@ -61,27 +61,6 @@ function HealthPanel.Register(category, catalog, preferences)
 				{
 					{ key = Keys.NAME_BACKDROP_COLOR },
 				},
-				"divider",
-				{
-					{ key = Keys.OWN_AURAS, span = 2 },
-				},
-				{
-					{ key = Keys.AURA_FILTER, span = 2 },
-				},
-				{
-					{ key = Keys.AURA_ANCHOR_POINT, span = 2 },
-				},
-				{
-					{ key = Keys.AURA_OFFSET_X },
-					{ key = Keys.AURA_OFFSET_Y },
-				},
-				{
-					{ key = Keys.AURA_ICON_SIZE },
-					{ key = Keys.AURA_ICON_SPACING },
-				},
-				{
-					{ key = Keys.AURA_MAX_COUNT },
-				},
 			},
 		},
 		{

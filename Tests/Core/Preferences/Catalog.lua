@@ -117,7 +117,7 @@ return function(Addon, T)
 		end)
 
 		T.Test("todo painel apontado existe entre os declarados", function()
-			local PANELS = { appearance = true, behaviour = true, health = true, plates = true, windows = true }
+			local PANELS = { appearance = true, auras = true, behaviour = true, health = true, plates = true, windows = true }
 
 			for _, preference in ipairs(catalog) do
 				T.IsTrue(

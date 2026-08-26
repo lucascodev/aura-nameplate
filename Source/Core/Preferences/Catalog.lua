@@ -4,6 +4,7 @@ local Keys = Addon.PreferenceKeys
 local L = Addon.L
 
 local APPEARANCE_PANEL = "appearance"
+local AURAS_PANEL = "auras"
 local BEHAVIOUR_PANEL = "behaviour"
 local HEALTH_PANEL = "health"
 local PLATES_PANEL = "plates"
@@ -327,7 +328,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.OWN_AURAS,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "boolean",
 		default = true,
 		label = L.PREF_OWN_AURAS,
@@ -335,7 +336,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_FILTER,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "string",
 		default = Addon.AuraFilters.OWN_DEBUFFS,
 		label = L.PREF_AURA_FILTER,
@@ -344,7 +345,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_ICON_SIZE,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "number",
 		default = 20,
 		label = L.PREF_AURA_ICON_SIZE,
@@ -355,7 +356,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_ICON_SPACING,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "number",
 		default = 2,
 		label = L.PREF_AURA_ICON_SPACING,
@@ -366,7 +367,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_MAX_COUNT,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "number",
 		default = 5,
 		label = L.PREF_AURA_MAX_COUNT,
@@ -377,7 +378,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_ANCHOR_POINT,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "string",
 		default = "bottom",
 		label = L.PREF_AURA_ANCHOR,
@@ -386,7 +387,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_OFFSET_X,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "number",
 		default = 0,
 		label = L.PREF_AURA_OFFSET_X,
@@ -397,7 +398,7 @@ local PreferenceCatalog = {
 	},
 	{
 		key = Keys.AURA_OFFSET_Y,
-		panel = HEALTH_PANEL,
+		panel = AURAS_PANEL,
 		kind = "number",
 		default = -4,
 		label = L.PREF_AURA_OFFSET_Y,
