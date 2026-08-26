@@ -65,6 +65,7 @@ function MainPanel.Register(addonInfo, catalog, preferences, entries, commands)
 	local page = Addon.OptionsPage.New({
 		title = addonInfo.title,
 		subtitle = Addon.L.INFO_SUBTITLE,
+		icon = addonInfo.icon,
 	})
 
 	local rows = SwitchRows(catalog)

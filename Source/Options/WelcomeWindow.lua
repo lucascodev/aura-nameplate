@@ -76,6 +76,7 @@ local STEPS = {
 
 --- Uma janela que aparece uma vez, na primeira execução, e conduz por etapas.
 ---@class WelcomeWindow
+---@field private addonInfo AddonInfo
 ---@field private preferences Preferences
 ---@field private firstRun FirstRun
 ---@field private openOptions fun()
@@ -84,12 +85,14 @@ local STEPS = {
 local WelcomeWindow = {}
 WelcomeWindow.__index = WelcomeWindow
 
+---@param addonInfo AddonInfo
 ---@param preferences Preferences
 ---@param firstRun FirstRun
 ---@param openOptions fun()
 ---@return WelcomeWindow
-function WelcomeWindow.New(preferences, firstRun, openOptions)
+function WelcomeWindow.New(addonInfo, preferences, firstRun, openOptions)
 	return setmetatable({
+		addonInfo = addonInfo,
 		preferences = preferences,
 		firstRun = firstRun,
 		openOptions = openOptions,
@@ -155,45 +158,6 @@ local function BuildRow(parent, preference, preferences, onChange)
 	end
 
 	return row
-end
-
---- O cabeçalho, com a mesma régua das páginas de opção.
----@param frame table
-local function BuildHeader(frame)
-	local title = frame:CreateFontString(nil, "ARTWORK")
-	title:SetFontObject(Fonts.TITLE)
-	title:SetPoint("TOPLEFT", Theme.PADDING, -Theme.HEADER_TOP)
-	title:SetText(Addon.L.WELCOME_TITLE)
-	Tint(title, Theme.TEXT_COLOR)
-
-	local subtitle = frame:CreateFontString(nil, "ARTWORK")
-	subtitle:SetFontObject(Fonts.SUBTITLE)
-	subtitle:SetPoint("TOPLEFT", Theme.PADDING, -Theme.HEADER_SUBTITLE_GAP)
-	subtitle:SetPoint("RIGHT", -Theme.PADDING, 0)
-	subtitle:SetJustifyH("LEFT")
-	subtitle:SetText(Addon.L.WELCOME_SUBTITLE)
-	Tint(subtitle, Theme.MUTED_COLOR)
-
-	local rule = frame:CreateTexture(nil, "ARTWORK")
-	rule:SetColorTexture(
-		Theme.BORDER_COLOR.red,
-		Theme.BORDER_COLOR.green,
-		Theme.BORDER_COLOR.blue,
-		Theme.BORDER_COLOR.alpha
-	)
-	rule:SetHeight(Theme.RULE_THICKNESS)
-	rule:SetPoint("TOPLEFT", Theme.PADDING, -Theme.HEADER_RULE_GAP)
-	rule:SetPoint("TOPRIGHT", -Theme.PADDING, -Theme.HEADER_RULE_GAP)
-
-	local accent = frame:CreateTexture(nil, "OVERLAY")
-	accent:SetColorTexture(
-		Theme.ACCENT_COLOR.red,
-		Theme.ACCENT_COLOR.green,
-		Theme.ACCENT_COLOR.blue,
-		Theme.ACCENT_COLOR.alpha
-	)
-	accent:SetSize(Theme.HEADER_ACCENT_WIDTH, Theme.RULE_THICKNESS)
-	accent:SetPoint("TOPLEFT", rule, "TOPLEFT")
 end
 
 --- O cartão de uma etapa: número, título, uma linha de contexto e as perguntas
@@ -425,7 +389,11 @@ function WelcomeWindow:Build()
 	frame:SetScript("OnDragStart", frame.StartMoving)
 	frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
 
-	BuildHeader(frame)
+	Addon.OptionsHeader.Build(frame, {
+		title = Addon.L.WELCOME_TITLE,
+		subtitle = Addon.L.WELCOME_SUBTITLE,
+		icon = self.addonInfo.icon,
+	})
 
 	local preview = Addon.NameplatePreview.Build(
 		frame,

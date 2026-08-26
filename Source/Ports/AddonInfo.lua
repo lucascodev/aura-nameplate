@@ -5,3 +5,4 @@
 ---@field title string
 ---@field brand string
 ---@field version string
+---@field icon string Texture path; the one the addon list shows.

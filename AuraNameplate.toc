@@ -6,11 +6,12 @@
 ## Notes-esES: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
 ## Notes-esMX: Muestra el hechizo que acabas de lanzar, con su reutilización global, en la placa de nombre de la unidad con la que peleas.
 ## Notes-frFR: Affiche le sort que vous venez de lancer, avec son temps de recharge global, sur la barre de nom de l'unité que vous combattez.
-## Version: 0.1.0
+## Version: 0.2.0
 ## Author: Lucascodev
 ## X-License: MIT
+## X-Curse-Project-ID: 1668538
 ## X-Copyright: Copyright (c) 2026 Lucascodev
-## IconTexture: Interface\Icons\Spell_Nature_TimeStop
+## IconTexture: Interface\AddOns\AuraNameplate\Media\Logo.tga
 ## SavedVariables: AuraNameplateDB
 ## Group: AuraNameplate
 ## Category-enUS: Combat
@@ -115,6 +116,7 @@ Source\UI\TestMode.lua
 # Options pages.
 Source\Options\Components\Theme.lua
 Source\Options\Components\Fonts.lua
+Source\Options\Components\Header.lua
 Source\Options\Components\Schematic.lua
 Source\Options\Components\Controls.lua
 Source\Options\Components\NameplatePreview.lua

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Media/source/logo-512-transparente.png" alt="Logo do Aura Nameplate" width="128">
+</p>
+
 # Aura Nameplate: GCD Tracker
 
 A magia que você acabou de lançar, desenhada no nameplate de quem recebeu, com
@@ -59,6 +63,7 @@ dentro:
 | Pasta | Responsabilidade |
 |---|---|
 | `Locales/` | textos, `enUS.lua` como padrão e as traduções por cima |
+| `Media/` | fontes e a logo; `source/` guarda a arte editável (SVG e PNG) e fica fora do pacote |
 | `Source/Core/` | regras em Lua puro: `Preferences/`, `Tracker/`, `Commands/`. **Nenhuma API do WoW** |
 | `Source/Ports/` | contratos de tipo, lidos pelo language server e fora do pacote |
 | `Source/Game/` | lê a API do jogo e não desenha nada, incluindo o único lugar que consulta valores secretos |
