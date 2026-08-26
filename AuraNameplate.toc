@@ -9,6 +9,7 @@
 ## Version: 0.1.0
 ## Author: Lucascodev
 ## X-License: MIT
+## X-Curse-Project-ID: 1668538
 ## X-Copyright: Copyright (c) 2026 Lucascodev
 ## IconTexture: Interface\AddOns\AuraNameplate\Media\Logo.tga
 ## SavedVariables: AuraNameplateDB

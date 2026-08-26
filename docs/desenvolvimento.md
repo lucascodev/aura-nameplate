@@ -147,10 +147,10 @@ secrets do repositório:
 | CurseForge | `## X-Curse-Project-ID` | `CF_API_KEY` |
 | Wago Addons | `## X-Wago-ID` | `WAGO_API_TOKEN` |
 
-**Nenhum dos dois identificadores está no `.toc` ainda**: os projetos precisam
-ser criados nos sites primeiro. Faltando qualquer um dos dois, o packager pula
-aquela vitrine e segue — o release não falha, e o zip continua sendo publicado
-no GitHub.
+O identificador da CurseForge já está no `.toc`; o do Wago ainda não, porque o
+projeto precisa ser criado no site primeiro. Faltando qualquer um dos dois, o
+packager pula aquela vitrine e segue — o release não falha, e o zip continua
+sendo publicado no GitHub.
 
 A imagem do projeto nas vitrines é
 [`Media/source/logo-512-curseforge.png`](../Media/source/logo-512-curseforge.png),
