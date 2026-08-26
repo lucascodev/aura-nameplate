@@ -4,7 +4,8 @@
 # whose name matches the .toc file, because that is how WoW finds an addon:
 # extracting a bare pile of files into Interface\AddOns installs nothing. And
 # the development-only files stay out: Ports/ holds type contracts the language
-# server reads at edit time, and nothing in the .toc loads them.
+# server reads at edit time, and nothing in the .toc loads them; Media\source
+# holds the editable art behind the logo, and the game never reads it.
 
 $ErrorActionPreference = "Stop"
 
@@ -40,6 +41,7 @@ foreach ($item in $Runtime) {
 # O que o .pkgmeta ignora no release tambem sai do pacote local, para os dois
 # zips serem o mesmo addon.
 Remove-Item (Join-Path $Staging "Source\Ports") -Recurse -Force
+Remove-Item (Join-Path $Staging "Media\source") -Recurse -Force
 
 # A file listed in the .toc but absent from the package fails at load time, in
 # the player's client, with no clue why. Cheaper to catch it here.

@@ -10,7 +10,7 @@
 ## Author: Lucascodev
 ## X-License: MIT
 ## X-Copyright: Copyright (c) 2026 Lucascodev
-## IconTexture: Interface\Icons\Spell_Nature_TimeStop
+## IconTexture: Interface\AddOns\AuraNameplate\Media\Logo.tga
 ## SavedVariables: AuraNameplateDB
 ## Group: AuraNameplate
 ## Category-enUS: Combat
@@ -115,6 +115,7 @@ Source\UI\TestMode.lua
 # Options pages.
 Source\Options\Components\Theme.lua
 Source\Options\Components\Fonts.lua
+Source\Options\Components\Header.lua
 Source\Options\Components\Schematic.lua
 Source\Options\Components\Controls.lua
 Source\Options\Components\NameplatePreview.lua
