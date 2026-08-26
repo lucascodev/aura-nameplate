@@ -1,8 +1,5 @@
 local ADDON_NAME, Addon = ...
 
---- A texture the client already ships, until the addon has art of its own.
-local ICON = [[Interface\Icons\Spell_Nature_TimeStop]]
-
 local LEFT_HINT = Addon.L.MINIMAP_LEFT_HINT
 local RIGHT_HINT = Addon.L.MINIMAP_RIGHT_HINT
 
@@ -37,7 +34,7 @@ end
 function MinimapButton:Attach()
 	local broker = LibStub("LibDataBroker-1.1"):NewDataObject(ADDON_NAME, {
 		type = "launcher",
-		icon = ICON,
+		icon = self.addonInfo.icon,
 		OnClick = function(_, button)
 			if button == "RightButton" then
 				self.onOptions()

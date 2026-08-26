@@ -341,7 +341,7 @@ local function Build()
 	)
 	optionsPanel:Register()
 
-	welcomeWindow = Addon.WelcomeWindow.New(preferences, firstRun, function()
+	welcomeWindow = Addon.WelcomeWindow.New(addonInfo, preferences, firstRun, function()
 		optionsPanel:Open()
 	end)
 

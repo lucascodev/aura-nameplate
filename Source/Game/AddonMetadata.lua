@@ -1,8 +1,11 @@
 local ADDON_NAME, Addon = ...
 
---- Reads the .toc metadata so version and title live in exactly one place.
+--- Reads the .toc metadata so version, title and icon live in exactly one place.
 ---@class AddonMetadata
 local AddonMetadata = {}
+
+--- Shipped by the client, for a manifest that names no art of its own.
+local FALLBACK_ICON = [[Interface\Icons\Spell_Nature_TimeStop]]
 
 ---@param field string
 ---@param fallback string
@@ -23,6 +26,7 @@ function AddonMetadata.Read()
 		title = title,
 		brand = ReadField("X-Brand", title),
 		version = ReadField("Version", "0.0.0"),
+		icon = ReadField("IconTexture", FALLBACK_ICON),
 	}
 end
 

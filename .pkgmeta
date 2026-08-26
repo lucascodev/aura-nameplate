@@ -15,6 +15,7 @@ externals:
 
 ignore:
   - Source/Ports
+  - Media/source
   - Tests
   - docs
   - build.ps1
