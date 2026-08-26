@@ -6,3 +6,6 @@ dist/
 # Fetched by the packager from .pkgmeta; kept on disk so build.ps1 and the game
 # work locally without a build step.
 Libs/
+
+# Chaves das vitrines, gravadas nos secrets do GitHub por `gh secret set -f .env`.
+.env
