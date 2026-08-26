@@ -3,12 +3,13 @@
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o
 projeto usa [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
-## [Não lançado]
+## [0.2.0] - 2026-08-25
 
 ### Adicionado
 
 - Logo própria no lugar do ícone emprestado do jogo: na lista de addons, no
   botão de minimapa e no cabeçalho da página principal e da apresentação.
+- Publicação na CurseForge, pelo mesmo empacotador que monta o zip do GitHub.
 
 ## [0.1.0] - 2026-08-25
 
