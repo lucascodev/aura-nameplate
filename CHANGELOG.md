@@ -3,6 +3,16 @@
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o
 projeto usa [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Corrigido
+
+- O tamanho do ícone das auras passa a valer na hora, em combate inclusive.
+  Antes só os botões criados depois da mudança nasciam no tamanho novo; os que
+  o jogo já tinha ficavam do tamanho antigo até um `/reload`. Em combate o
+  cliente proíbe mexer num botão que está mostrando aura, então a fileira é
+  recriada com o tamanho novo assim que o controle para de mexer.
+
 ## [0.2.0] - 2026-08-25
 
 ### Adicionado

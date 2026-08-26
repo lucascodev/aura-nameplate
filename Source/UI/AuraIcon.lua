@@ -26,6 +26,18 @@ local function TextSize(size)
 	return math.max(MINIMUM_TEXT_SIZE, math.floor(size * TEXT_SCALE))
 end
 
+---@param size number
+---@param font { path: string, flags: string }
+---@return AuraIconFont
+local function Scaled(size, font)
+	return { path = font.path, size = TextSize(size), flags = font.flags }
+end
+
+--- As regiões de texto de cada botão, guardadas para o redimensionamento: o
+--- contêiner do cliente reaproveita os botões, então o tamanho escolhido nas
+--- opções precisa alcançar os que já existem, e não só os que nascem depois.
+local texts = setmetatable({}, { __mode = "k" })
+
 --- O formatador é do cliente e é o mesmo para todo botão: um por ícone seria
 --- desperdício, e a regra não muda de um para o outro.
 local durationFormatter
@@ -73,6 +85,7 @@ end
 
 ---@param button table
 ---@param font AuraIconFont
+---@return table text
 local function AddDuration(button, font)
 	local text = button:CreateFontString(nil, "OVERLAY")
 
@@ -80,10 +93,13 @@ local function AddDuration(button, font)
 	text:SetPoint("CENTER", button, "CENTER")
 
 	button:SetDurationText(text, { textFormatter = DurationFormatter() })
+
+	return text
 end
 
 ---@param button table
 ---@param font AuraIconFont
+---@return table text
 local function AddStacks(button, font)
 	local text = button:CreateFontString(nil, "OVERLAY")
 
@@ -91,6 +107,8 @@ local function AddStacks(button, font)
 	text:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT")
 
 	button:SetApplicationCount(text)
+
+	return text
 end
 
 --- De onde o tooltip nasce. À direita do ícone, e não sobre a placa, que é o
@@ -128,15 +146,39 @@ end
 ---@param size number
 ---@param font { path: string, flags: string }
 function AuraIcon.Build(button, size, font)
-	local scaled = { path = font.path, size = TextSize(size), flags = font.flags }
+	local scaled = Scaled(size, font)
 
 	button:SetSize(size, size)
 
 	AcceptHover(button)
 	AddIcon(button)
 	AddSweep(button)
-	AddDuration(button, scaled)
-	AddStacks(button, scaled)
+
+	texts[button] = {
+		duration = AddDuration(button, scaled),
+		stacks = AddStacks(button, scaled),
+	}
+end
+
+--- Muda o tamanho de um botão já montado, com os textos acompanhando. O ícone
+--- e a varredura seguem o botão sozinhos, porque estão presos a todas as
+--- bordas dele.
+---@param button table
+---@param size number
+---@param font { path: string, flags: string }
+function AuraIcon.Resize(button, size, font)
+	local scaled = Scaled(size, font)
+
+	button:SetSize(size, size)
+
+	local parts = texts[button]
+
+	if not parts then
+		return
+	end
+
+	parts.duration:SetFont(scaled.path, scaled.size, scaled.flags)
+	parts.stacks:SetFont(scaled.path, scaled.size, scaled.flags)
 end
 
 Addon.AuraIcon = AuraIcon
